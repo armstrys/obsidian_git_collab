@@ -26,13 +26,14 @@ jobs:
             -   name: Check if release exists
                 id: release-check
                 run: |
-                    if gh release view ${{ steps.version.outputs.tag }} >/dev/null 2>&1; then
+                    if gh release view ${{ steps.version.outputs.tag }} --repo ${{ github.repository }} >/dev/null 2>&1; then
                         echo "exists=true" >> $GITHUB_OUTPUT
                     else
                         echo "exists=false" >> $GITHUB_OUTPUT
                     fi
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: Build
                 if: steps.release-check.outputs.exists == 'false'
                 run: |
@@ -46,12 +47,15 @@ jobs:
                 run: |
                     gh release create ${{ steps.version.outputs.tag }} \
                         --title "Release ${{ steps.version.outputs.tag }}" \
-                        --notes "Automated release for version ${{ steps.version.outputs.version }}"
+                        --notes "Automated release for version ${{ steps.version.outputs.version }}" \
+                        --repo ${{ github.repository }}
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: Upload assets
                 if: steps.release-check.outputs.exists == 'false'
                 run: |
-                    gh release upload ${{ steps.version.outputs.tag }} ${{ env.PLUGIN_NAME }}.zip main.js manifest.json styles.css
+                    gh release upload ${{ steps.version.outputs.tag }} ${{ env.PLUGIN_NAME }}.zip main.js manifest.json styles.css --repo ${{ github.repository }}
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
