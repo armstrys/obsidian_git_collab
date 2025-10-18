@@ -1,0 +1,267 @@
+/* Git Collaboration Plugin - Tab Ribbon Mode Styles */
+
+/* Read-Only Mode: Style the main tab ribbon in orange (warning/protection) */
+.git-collab-readonly .workspace-tabs {
+    background: linear-gradient(135deg, #ffa502, #ff8c42) !important;
+    border-bottom: 3px solid #ff7f27 !important;
+    animation: pulse-warning 3s infinite;
+}
+
+.git-collab-readonly .workspace-tab-header {
+    background: rgba(255, 165, 2, 0.1) !important;
+    border-color: rgba(255, 165, 2, 0.3) !important;
+}
+
+.git-collab-readonly .workspace-tab-header.is-active {
+    background: rgba(255, 165, 2, 0.2) !important;
+    border-bottom: 2px solid #ffa502 !important;
+}
+
+.git-collab-readonly .workspace-tab-header-inner {
+    color: #fff !important;
+}
+
+/* Edit Mode: Style the main tab ribbon in Obsidian purple */
+.git-collab-edit-mode .workspace-tabs {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+    border-bottom: 3px solid #6d28d9 !important;
+}
+
+.git-collab-edit-mode .workspace-tab-header {
+    background: rgba(139, 92, 246, 0.1) !important;
+    border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+.git-collab-edit-mode .workspace-tab-header.is-active {
+    background: rgba(139, 92, 246, 0.2) !important;
+    border-bottom: 2px solid #8b5cf6 !important;
+}
+
+.git-collab-edit-mode .workspace-tab-header-inner {
+    color: #fff !important;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Left Ribbon Icon Styling */
+.git-collab-readonly-ribbon {
+    background: rgba(255, 165, 2, 0.3) !important;
+    color: #ffa502 !important;
+    box-shadow: 0 0 10px rgba(255, 165, 2, 0.5) !important;
+    animation: pulse-ribbon 2s infinite;
+}
+
+.git-collab-edit-mode .side-dock-ribbon .side-dock-ribbon-action[aria-label*="Enable Read-Only"] {
+    background: rgba(139, 92, 246, 0.3) !important;
+    color: #8b5cf6 !important;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5) !important;
+}
+
+@keyframes pulse-ribbon {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* Body modifications when in read-only mode */
+.git-collab-readonly {
+    cursor: not-allowed !important;
+}
+
+/* Body modifications when in edit mode */
+.git-collab-edit-mode {
+    border-top: 3px solid #8b5cf6;
+}
+
+.git-collab-edit-mode .status-bar {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+/* Editor read-only styling */
+.git-collab-readonly .cm-editor {
+    background: rgba(255, 165, 2, 0.05) !important;
+    border: 1px solid rgba(255, 165, 2, 0.2) !important;
+    cursor: not-allowed !important;
+}
+
+.git-collab-readonly .cm-content {
+    cursor: not-allowed !important;
+}
+
+.git-collab-readonly .cm-editor .cm-line {
+    background: rgba(255, 165, 2, 0.02) !important;
+}
+
+.git-collab-readonly .cm-cursor {
+    display: none !important;
+}
+
+.git-collab-readonly .cm-selectionBackground {
+    background: rgba(255, 165, 2, 0.1) !important;
+}
+
+/* Status bar styling */
+.git-collab-readonly-status {
+    background: rgba(255, 165, 2, 0.2) !important;
+    color: #ffa502 !important;
+    padding: 2px 6px !important;
+    border-radius: 3px !important;
+    font-weight: 600 !important;
+}
+
+/* Read-only editor container styling */
+.git-collab-readonly-editor {
+    position: relative;
+}
+
+.git-collab-readonly-editor::before {
+    content: "🔒 READ-ONLY";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 165, 2, 0.9);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Hide file operation buttons in read-only mode */
+.git-collab-readonly .nav-action-button[aria-label*="New"],
+.git-collab-readonly .clickable-icon[aria-label*="New"],
+.git-collab-readonly .nav-files-container .nav-action-button {
+    display: none !important;
+}
+
+/* Disable context menu visual feedback */
+.git-collab-readonly .nav-file:hover,
+.git-collab-readonly .nav-folder:hover {
+    background: rgba(255, 165, 2, 0.1) !important;
+}
+
+/* Add warning cursor to file tree in read-only mode */
+.git-collab-readonly .nav-files-container {
+    cursor: not-allowed !important;
+}
+
+.git-collab-readonly .nav-file,
+.git-collab-readonly .nav-folder {
+    cursor: not-allowed !important;
+}
+
+/* File tree read-only indicators */
+.git-collab-readonly .nav-file-title,
+.git-collab-readonly .nav-folder-title {
+    opacity: 0.7;
+}
+
+.git-collab-readonly .nav-file-title::after {
+    content: " 🔒";
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+/* Override Obsidian's default cursor in editors */
+.git-collab-readonly .workspace-leaf-content .cm-editor .cm-content {
+    cursor: default !important;
+}
+
+/* Modal and dialog styling adjustments */
+.git-collab-readonly .modal {
+    border: 2px solid rgba(255, 165, 2, 0.3);
+}
+
+/* Ensure command palette and other critical UI elements remain functional */
+.modal-container,
+.suggestion-container,
+.dropdown {
+    cursor: default !important;
+}
+
+/* Branch Selection Modal Styling */
+.git-branch-current {
+	background: var(--background-secondary);
+	padding: 8px 12px;
+	border-radius: 6px;
+	margin: 10px 0;
+	font-weight: 500;
+	border-left: 3px solid var(--interactive-accent);
+}
+
+.git-branch-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 10px 0;
+}
+
+.git-branch-item {
+	display: flex;
+	align-items: center;
+}
+
+.git-branch-button {
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+	padding: 8px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	width: 100%;
+	text-align: left;
+	transition: all 0.2s ease;
+}
+
+.git-branch-button:hover:not(:disabled) {
+	background: var(--background-modifier-hover);
+	border-color: var(--interactive-accent);
+}
+
+.git-branch-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.git-branch-last-working {
+	background: var(--background-modifier-success) !important;
+	border-color: var(--color-green) !important;
+}
+
+.git-new-branch-container {
+	margin: 10px 0;
+}
+
+.git-branch-suggestions {
+	margin: 15px 0;
+}
+
+.git-branch-suggestions p {
+	margin-bottom: 8px;
+	font-size: 0.9em;
+	color: var(--text-muted);
+}
+
+.git-branch-suggestion {
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+	padding: 4px 8px;
+	border-radius: 4px;
+	margin: 2px 4px 2px 0;
+	cursor: pointer;
+	font-size: 0.85em;
+	transition: all 0.2s ease;
+}
+
+.git-branch-suggestion:hover {
+	background: var(--background-modifier-hover);
+	border-color: var(--interactive-accent);
+}
+
+.git-branch-buttons {
+	border-top: 1px solid var(--background-modifier-border);
+	padding-top: 15px;
+}

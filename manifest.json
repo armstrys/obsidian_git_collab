@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-git-collab",
+	"name": "Obsidian Git Collaboration",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "Enable syncing GitHub repositories through Obsidian with collaborative editing via branching, merging, and pull requests.",
+	"author": "Ryan Armstrong",
+	"authorUrl": "",
+	"isDesktopOnly": false
+}
